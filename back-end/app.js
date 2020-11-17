@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-// const stuffRoutes = require('./routes/stuff');
-// const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
+const saucesRoutes = require('./routes/sauces');
 
-// const path = require('path');
+const path = require('path');
 
 const app = express();
 
@@ -13,8 +13,8 @@ const app = express();
 mongoose.connect('mongodb+srv://wa1:wa1@cluster0.leg1q.mongodb.net/cluster0?retryWrites=true&w=majority',
   { useNewUrlParser: true,
   useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+  .then(() => console.log('Connexion à MongoDB réussie :D'))
+  .catch(() => console.log("Connexion à MongoDB échouée :'("));
 
 // CORS + parser pour exploiter les données plus facilement
 app.use((req, res, next) => {
@@ -25,9 +25,9 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.json());
 
-// app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// app.use('/api/stuff', stuffRoutes);
-// app.use('/api/auth', userRoutes);
+app.use('/api/auth', userRoutes);
+app.use('/api/sauces', saucesRoutes);
 
 module.exports = app;
