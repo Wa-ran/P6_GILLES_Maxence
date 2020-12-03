@@ -16,13 +16,14 @@ mongoose.connect('mongodb+srv://wa1:wa1@cluster0.leg1q.mongodb.net/cluster0?retr
   .then(() => console.log('Connexion à MongoDB réussie :D'))
   .catch(() => console.log("Connexion à MongoDB échouée :'("));
 
-// CORS + parser pour exploiter les données plus facilement
+// CORS
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+// Parser pour exploiter les données plus facilement
 app.use(bodyParser.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
